@@ -1,0 +1,21 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sample-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/goti13/Ecommerce-application-for-ArgoCD-usecase.git'
+    path: k8s/dev
+    targetRevision: HEAD
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: sample-namespace
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+
+
